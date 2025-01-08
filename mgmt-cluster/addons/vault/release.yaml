@@ -59,11 +59,11 @@ spec:
     - kustomize:
         patches:
         - target:
-            kind: Pod
-            name: vault-0
+            kind: StatefulSet
+            name: vault
           patch: |-
             - op: add
-              path: /spec/hostAliases
+              path: /spec/template/spec/hostAliases
               value:
                 - ip: ${clusterIP}
                   hostnames:
@@ -71,14 +71,14 @@ spec:
                   - "vault.${dnsSuffix}"
 
             - op: add
-              path: /spec/volumes/-
+              path: /spec/template/spec/volumes/-
               value:
                 name: local-ca
                 configMap:
                   name: local-ca
 
             - op: add
-              path: /spec/containers/0/volumeMounts/-
+              path: /spec/template/spec/containers/0/volumeMounts/-
               value:
                 name: local-ca
                 mountPath: /etc/ssl/certs/local-ca.pem
