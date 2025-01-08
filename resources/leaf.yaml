@@ -1,0 +1,81 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: leaf-config
+  namespace: dae
+spec:
+  dependsOn:
+      namespace: flux-system
+  interval: 10m0s
+  retryInterval: 1m0s
+  sourceRef:
+    kind: GitRepository
+    name: global-config
+    namespace: flux-system
+  path: ./leaf-clusters/leaf-config
+  prune: true
+  timeout: 5m
+  wait: true
+  postBuild:
+    substitute:
+      clusterName: ${cluster_name}
+      GitHubOrg: ${GITHUB_MGMT_ORG}
+      GitHubRepo: ${GITHUB_MGMT_REPO}
+      globalGitHubOrg: ${GITHUB_GLOBAL_CONFIG_ORG}
+      globalGitHubRepo: ${GITHUB_GLOBAL_CONFIG_REPO}
+      globalGitHubBranch: ${global_config_branch}
+      awsAccountId: "\"${AWS_ACCOUNT_ID}\""
+      prefixName: ${PREFIX_NAME}
+      awsRegion: ${AWS_REGION}
+      awsTagCreator: ${AWS_TAG_creator}
+      awsTagCustomer: ${AWS_TAG_customer}
+      awsTagProjectGid: "\"${AWS_TAG_projectGid}\""
+      userEmail: ${USER_EMAIL}
+      commitUser: ${GITHUB_USER}
+      resourceName: kind
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: leaf
+  namespace: dae
+spec:
+  prune: true
+  retryInterval: 1m0s
+  sourceRef:
+    kind: GitRepository
+    name: global-config
+    namespace: flux-system
+  timeout: 5m
+  wait: true
+  dependsOn:
+  - name: leaf-config
+  interval: 5m0s
+  path: ./leaf-clusters/leaf
+  postBuild:
+    substituteFrom:
+    - kind: ConfigMap
+      name: cluster-config
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: leaf-apps
+  namespace: dae
+spec:
+  prune: true
+  retryInterval: 1m0s
+  sourceRef:
+    kind: GitRepository
+    name: global-config
+    namespace: flux-system
+  timeout: 5m
+  wait: true
+  dependsOn:
+  - name: leaf
+  interval: 5m0s
+  path: ./leaf-clusters/leaf-apps
+  postBuild:
+    substituteFrom:
+    - kind: ConfigMap
+      name: cluster-config

@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-config
+  namespace: ${templateNamespace}
+data:
+  clusterType: "leaf"
+  clusterName: ${clusterName}
+  GitHubOrg: ${GitHubOrg}
+  GitHubRepo: ${GitHubRepo}
+  globalGitHubOrg: ${globalGitHubOrg}
+  globalGitHubRepo: ${globalGitHubRepo}
+  globalGitHubBranch: ${globalGitHubBranch}
+  awsAccountId: ${awsAccountId}
+  prefixName: ${prefixName}
+  awsRegion: ${awsRegion}
+  awsTagCreator: ${awsTagCreator}
+  awsTagCustomer: ${awsTagCustomer}
+  awsTagProjectGid: ${awsTagProjectGid}
+  userEmail: ${userEmail}
+  commitUser: ${commitUser}
+  resourceName: ${resourceName}
+  templateNamespace: ${templateNamespace}
+  clusterSet: ${cset}
+  region: ${region}
+  env: ${env}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-config
+  namespace: flux-system
+data:
+  clusterType: "leaf"
+  clusterName: ${clusterName}
+  GitHubOrg: ${GitHubOrg}
+  GitHubRepo: ${GitHubRepo}
+  globalGitHubOrg: ${globalGitHubOrg}
+  globalGitHubRepo: ${globalGitHubRepo}
+  globalGitHubBranch: ${globalGitHubBranch}
+  awsAccountId: ${awsAccountId}
+  prefixName: ${prefixName}
+  awsRegion: ${awsRegion}
+  awsTagCreator: ${awsTagCreator}
+  awsTagCustomer: ${awsTagCustomer}
+  awsTagProjectGid: "${awsTagProjectGid}"
+  userEmail: ${userEmail}
+  commitUser: ${commitUser}
+  resourceName: ${resourceName}
+  templateNamespace: flux-system
+  clusterSet: ${cset}
+  region: ${region}
+  env: ${env}
+  

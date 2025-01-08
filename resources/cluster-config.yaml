@@ -1,0 +1,26 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-config
+  namespace: ${namespace}
+data:
+  clusterType: "macbook"
+  mgmtClusterName: ${CLUSTER_NAME}
+  dnsSuffix: ${local_dns}
+  clusterIP: ${CLUSTER_IP}
+  scmType: github
+  GitHubOrg: ${GITHUB_MGMT_ORG}
+  GitHubRepo: ${GITHUB_MGMT_REPO}
+  globalGitHubOrg: ${GITHUB_GLOBAL_CONFIG_ORG}
+  globalGitHubRepo: ${GITHUB_GLOBAL_CONFIG_REPO}
+  globalGitHubBranch: ${global_config_branch}
+  awsAccountId: "${AWS_ACCOUNT_ID}"
+  prefixName: ${PREFIX_NAME}
+  awsRegion: ${AWS_REGION}
+  userEmail: ${USER_EMAIL}
+  vault_url: ${VAULT_ADDR}
+  commitUser: ${GITHUB_USER}
+  awsKeyPairName: ${GITHUB_USER}
+  sshPubKey: ${SSH_PUB_KEY}
+  capi: "${capi}"

@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: all
+subjects:
+  - kind: User
+    name: admin
+    apiGroup: rbac.authorization.k8s.io
+  - kind: User
+    name: ${userEmail}
+    apiGroup: rbac.authorization.k8s.io
+  - kind: Group
+    name: pc-dae--gitops:admin # Github group
+    apiGroup: rbac.authorization.k8s.io
