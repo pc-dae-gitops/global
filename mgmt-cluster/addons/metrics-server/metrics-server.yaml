@@ -132,7 +132,8 @@ spec:
         - --cert-dir=/tmp
         - --secure-port=4443
         - --kubelet-preferred-address-types=InternalIP
-        - --kubelet-insecure-tls
+        - --kubelet-insecure-
+        - --v=3
         image: k8s.gcr.io/metrics-server/metrics-server:v0.7.2
         imagePullPolicy: IfNotPresent
         livenessProbe:
