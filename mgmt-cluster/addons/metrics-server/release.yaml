@@ -27,6 +27,8 @@ spec:
     tls:
       type: helm
       clusterDomain: kubernetes.docker.internal
+    hostNetwork:
+      enabled: true
   postRenderers:
     - kustomize:
         patches:
