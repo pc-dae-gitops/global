@@ -84,9 +84,9 @@ spec:
     bloomGateway:
       replicas: 0
 
-    persistence:
-      enabled: true
-      size: 10Gi
+    # persistence:
+    #   enabled: true
+    #   size: 10Gi
     monitoring:
       lokiCanary:
         enabled: false
