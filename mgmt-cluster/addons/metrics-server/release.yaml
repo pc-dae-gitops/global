@@ -22,5 +22,7 @@ spec:
   interval: 10m0s
   timeout: 5m
   values:
+    apiService:
+      insecureSkipTLSVerify: false
     tls:
-      type: cert-manager
+      type: helm
