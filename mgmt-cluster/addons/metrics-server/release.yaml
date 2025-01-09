@@ -23,7 +23,7 @@ spec:
   timeout: 5m
   values:
     apiService:
-      insecureSkipTLSVerify: false
+      insecureSkipTLSVerify: true
     tls:
       type: helm
       clusterDomain: kubernetes.docker.internal
