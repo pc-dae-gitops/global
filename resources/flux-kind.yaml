@@ -190,7 +190,7 @@ metadata:
 spec:
   interval: 10m0s
   dependsOn:
-    - name: vault
+    - name: nginx
   path: ./mgmt-cluster/config
   prune: true
   wait: true
