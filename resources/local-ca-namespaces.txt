@@ -2,4 +2,3 @@ dex
 vault
 flux-system
 ingress-nginx
-metrics-server
