@@ -64,17 +64,17 @@ spec:
       replicas: 0
     write:
       replicas: 0
-    persistence:
-      enabled: true
-      size: 40Gi
-    monitoring:
-      lokiCanary:
-        enabled: false
-      selfMonitoring:
-        enabled: false
-        grafanaAgent:
-          installOperator: false
-    gateway:
-      enabled: false
-    test:
-      enabled: false
+    # persistence:
+    #   enabled: true
+    #   size: 40Gi
+    # monitoring:
+    #   lokiCanary:
+    #     enabled: false
+    #   selfMonitoring:
+    #     enabled: false
+    #     grafanaAgent:
+    #       installOperator: false
+    # gateway:
+    #   enabled: false
+    # test:
+    #   enabled: false
