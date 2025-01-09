@@ -133,7 +133,7 @@ spec:
         - --secure-port=4443
         - --kubelet-preferred-address-types=InternalIP
         - --kubelet-insecure-tls
-        image: k8s.gcr.io/metrics-server/metrics-server:v0.4.1
+        image: k8s.gcr.io/metrics-server/metrics-server:v0.6.3
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3

@@ -1,14 +1,20 @@
-"connectors":
-- "config":
-    "baseURL": "https://github.com"
+connectors:
+- type: github
+  id: github
+  name: Github
+  config:
     "clientID": "$GITHUB_CLIENT_ID"
     "clientSecret": "$GITHUB_CLIENT_SECRET"
+    teamNameField: slug
+    useLoginAsID: true
+    orgs:
+    - name: $GITHUB_AUTH_ORG
+      teams:
+      - admin
+    "baseURL": "https://github.com"
     "groups":
     - "$GITHUB_AUTH_ORG"
     "redirectURI": "https://dex.${local_dns}/callback"
-  "id": "github"
-  "name": "GitHub"
-  "type": "github"
 "issuer": "https://dex.${local_dns}"
 "oauth2":
   "skipApprovalScreen": true
