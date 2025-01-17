@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: company-ca-certs
+  namespace: flux-system
+data:
+  Company-Root-CA.crt: |+
