@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helm-controller
+  namespace: flux-system
+spec:
+  template:
+    spec:
+      containers:
+        - name: manager
+          volumeMounts:
+            - name: cert-volume
+              mountPath: /etc/ssl/certs/Company-Root-CA.crt
+              subPath: Company-Root-CA.crt
+              readOnly: false
+      initContainers:
+        - name: init-helm-controller-certs
+          image: debian
+          command:
+            ["sh", "-c", 'echo "$TRUSTED_CERT" > /var/tmp/Company-Root-CA.crt']
+          env:
+            - name: TRUSTED_CERT
+              valueFrom:
+                secretKeyRef:
+                  name: company-ca-certs
+                  key: Company-Root-CA.crt
+          volumeMounts:
+            - name: cert-volume
+              mountPath: /var/tmp
+      volumes:
+        - name: cert-volume
+          emptyDir: {}
