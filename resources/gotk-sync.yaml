@@ -16,7 +16,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./mgmt-cluster/addons/flux$COMPANY_CA_CERTS
+  path: ./mgmt-cluster/addons/flux$COMPANY_CA_CERTS_PATH
   prune: true
   sourceRef:
     kind: GitRepository
