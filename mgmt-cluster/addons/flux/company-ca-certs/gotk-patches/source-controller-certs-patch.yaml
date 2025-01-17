@@ -9,8 +9,6 @@ spec:
       containers:
         - name: manager
           volumeMounts:
-            - name: cert-volume
-              mountPath: /var/tmp
             - name: ca-certs
               mountPath: /etc/ssl/certs/Company-Root-CA.crt
               subPath: Company-Root-CA.crt
