@@ -21,7 +21,7 @@ spec:
           env:
             - name: TRUSTED_CERT
               valueFrom:
-                secretKeyRef:
+                configMapKeyRef:
                   name: company-ca-certs
                   key: Company-Root-CA.crt
           volumeMounts:
