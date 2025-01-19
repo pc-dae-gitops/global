@@ -12,7 +12,7 @@ spec:
             - name: ca-certs
               mountPath: /etc/ssl/certs/Company-Root-CA.crt
               subPath: Company-Root-CA.crt
-              readOnly: true
+              readOnly: false
       volumes:
         - name: ca-certs
           configMap:
