@@ -9,12 +9,24 @@ spec:
       containers:
         - name: manager
           volumeMounts:
-            - name: ca-certs
-              mountPath: /etc/ssl/certs/ca-certs-company.pem
+            - name: cert-volume
+              mountPath: /etc/ssl/certs/Company-Root-CA.crt
               subPath: Company-Root-CA.crt
               readOnly: false
+      initContainers:
+        - name: init-helm-controller-certs
+          image: debian
+          command:
+            ["sh", "-c", 'echo "$TRUSTED_CERT" > /var/tmp/Company-Root-CA.crt']
+          env:
+            - name: TRUSTED_CERT
+              valueFrom:
+                configMapKeyRef:
+                  name: company-ca-certs
+                  key: Company-Root-CA.crt
+          volumeMounts:
+            - name: cert-volume
+              mountPath: /var/tmp
       volumes:
-        - name: ca-certs
-          configMap:
-            defaultMode: 0600
-            name: company-ca-certs
+        - name: cert-volume
+          emptyDir: {}
