@@ -10,7 +10,7 @@ spec:
         - name: manager
           volumeMounts:
             - name: ca-certs
-              mountPath: /etc/ssl/certs/Company-Root-CA.crt
+              mountPath: /etc/ssl/certs/ca-certs-company.pem
               subPath: Company-Root-CA.crt
               readOnly: false
       volumes:
