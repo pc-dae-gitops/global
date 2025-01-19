@@ -1,6 +1,7 @@
 # Global variables
 externalURL: https://$HARBOR_DNS
-harborAdminPassword: "$HARBOR_PASSWORD"
+existingSecretAdminPassword: admin-password
+existingSecretAdminPasswordKey: adminPasswd
 
 expose:
   ingress:
